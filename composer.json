@@ -1,7 +1,7 @@
 {
     "name": "vientodigital/expopushnotifier",
-    "description": ":description",
-    "license": "license",
+    "description": ":Expo Push Notification Helper",
+    "license": "MIT",
     "authors": [
         {
             "name": "Victor Yoalli Dominguez",
