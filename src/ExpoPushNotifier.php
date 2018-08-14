@@ -6,14 +6,21 @@ use GuzzleHttp\Client;
 
 class ExpoPushNotifier
 {
-	public static function send($tokens, string $title,string $body,int $badge = 1, string $sound='default'){
+	private $client;
+	private $url;
+
+	public function __construct()
+	{
+		$this->client = new Client();
+		$this->url = config('expopushnotifier.url');
+	}
+
+
+	public function send($tokens, string $title,string $body,int $badge = 1, string $sound='default'){
 		if(!is_array($tokens) && is_string($tokens))
 			$tokens = [$tokens];
 		else 
-			return;
-			// throw new ExpoPushNotifierException();
-		$client = new Client();
-		$url = config('expopushnotifier.url');
+			throw new ExpoPushNotifierException('Invalid token');
 		foreach ($tokens as $key => $token) {
 			$data = [
 				'to'=>$token,
@@ -25,8 +32,8 @@ class ExpoPushNotifier
 		}
 		$this->sendRequest($data);
 	}
-	private static function sendRequest($data){
-		$response = $client->request('POST',$url,['json' => $data ]);
+	private function sendRequest($data){
+		$response = $this->client->request('POST',$this->url,['json' => $data ]);
 		return $response;
 	}
 }
