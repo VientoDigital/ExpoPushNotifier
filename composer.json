@@ -1,0 +1,41 @@
+{
+    "name": "vientodigital/expopushnotifier",
+    "description": ":description",
+    "license": "license",
+    "authors": [
+        {
+            "name": "Victor Yoalli Dominguez",
+            "email": "victoryoalli@gmail.com",
+            "homepage": "author homepage"
+        }
+    ],
+    "homepage": "https://github.com/vientodigital/expopushnotifier",
+    "keywords": ["Laravel", "ExpoPushNotifier"],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "VientoDigital\\ExpoPushNotifier\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "VientoDigital\\ExpoPushNotifier\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VientoDigital\\ExpoPushNotifier\\ExpoPushNotifierServiceProvider"
+            ],
+            "aliases": {
+                "ExpoPushNotifier": "VientoDigital\\ExpoPushNotifier\\Facades\\ExpoPushNotifier"
+            }
+        }
+    }
+}
