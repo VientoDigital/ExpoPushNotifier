@@ -6,13 +6,14 @@
         {
             "name": "Victor Yoalli Dominguez",
             "email": "victoryoalli@gmail.com",
-            "homepage": "author homepage"
+            "homepage": "http://viento.digital"
         }
     ],
     "homepage": "https://github.com/vientodigital/expopushnotifier",
     "keywords": ["Laravel", "ExpoPushNotifier"],
     "require": {
-        "illuminate/support": "~5"
+        "illuminate/support": "~5",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.0",
@@ -21,7 +22,10 @@
     "autoload": {
         "psr-4": {
             "VientoDigital\\ExpoPushNotifier\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
