@@ -19,8 +19,9 @@ class ExpoPushNotifier
 	public function send($tokens, string $title,string $body,int $badge = 1, string $sound='default'){
 		if(!is_array($tokens) && is_string($tokens))
 			$tokens = [$tokens];
-		else 
+		else if(!is_array($tokens))
 			throw new ExpoPushNotifierException('Invalid token');
+		\Log::info(['tokens'=>$tokens]);
 		foreach ($tokens as $key => $token) {
 			$data = [
 				'to'=>$token,
@@ -29,8 +30,8 @@ class ExpoPushNotifier
 				'badge'=>$badge,
 				'sound'=>$sound
 			];
+			$this->sendRequest($data);
 		}
-		$this->sendRequest($data);
 	}
 	private function sendRequest($data){
 		$response = $this->client->request('POST',$this->url,['json' => $data ]);
