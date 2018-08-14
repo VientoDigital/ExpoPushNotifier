@@ -3,25 +3,30 @@
 namespace VientoDigital\ExpoPushNotifier;
 
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Log;
 
 class ExpoPushNotifier
 {
-	public static function send(string $token, string $title,string $body,int $badge = 1, string $sound='default'){
+	public static function send($tokens, string $title,string $body,int $badge = 1, string $sound='default'){
+		if(!is_array($tokens) && is_string($tokens))
+			$tokens = [$tokens];
+		else 
+			return;
+			// throw new ExpoPushNotifierException();
 		$client = new Client();
 		$url = config('expopushnotifier.url');
-		// Log::info($url);
-		$data = [
+		foreach ($tokens as $key => $token) {
+			$data = [
 				'to'=>$token,
 				'title'=>$title,
 				'body'=>$body,
 				'badge'=>$badge,
 				'sound'=>$sound
 			];
-		$response = $client->request('POST',$url,[
-			'json' => $data 
-		]);
-		Log::info(['data'=>$data]);
-		Log::info(['response'=>$response]);
+		}
+		$this->sendRequest($data);
+	}
+	private static function sendRequest($data){
+		$response = $client->request('POST',$url,['json' => $data ]);
+		return $response;
 	}
 }
