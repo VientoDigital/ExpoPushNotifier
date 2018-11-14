@@ -1,13 +1,13 @@
 <?php
 
-// if (!function_exists('expoSend')) {
+if (!function_exists('enoti')) {
     /**
      * Get the Debugbar instance
      *
      * @return \VientoDigital\ExpoPushNotifier
      */
-    // function expoSend()
-    // {
-    //     return app('expoSend');
-    // }
-// }
+    function enoti()
+    {
+        return app('expopushnotifier');
+    }
+}
